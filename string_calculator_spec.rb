@@ -9,5 +9,12 @@ RSpec.describe StringCalculator do
                 expect(subject.add("")).to eq(0)
             end
         end
+
+        context 'When single number provided to add' do  
+            it 'should return the number' do
+                expect(subject.add("1")).to eq(1)
+                expect(subject.add("5")).to eq(5)
+            end
+        end
     end
   end
