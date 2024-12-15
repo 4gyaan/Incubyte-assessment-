@@ -40,5 +40,11 @@ RSpec.describe StringCalculator do
                 expect(subject.add("1\n 2, 3\n 4")).to eq(10)
             end
         end
+
+        context 'When provide different delimeter between numbers to add' do  
+            it 'should return the sum of the numbers' do
+                expect(subject.add("//;\n1;2")).to eq(3)
+            end
+        end
     end
   end
