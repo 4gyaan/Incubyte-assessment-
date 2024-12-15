@@ -23,5 +23,16 @@ RSpec.describe StringCalculator do
                 expect(subject.add("10, 10, 15")).to eq(35)
             end
         end
+
+        context 'When any amount of numbers provided to add' do
+            let(:any_amount_of_numbers1) { (1..100).to_a }
+            let(:any_amount_of_numbers2) { (1..1000).to_a }
+            let(:convert_csv) { proc { |nums| nums.inject('') { |csv, num| csv += num.to_s + ','} } }
+
+            it 'should return the sum of the numbers' do
+                expect(subject.add(convert_csv.call(any_amount_of_numbers1))).to eq(any_amount_of_numbers1.sum)
+                expect(subject.add(convert_csv.call(any_amount_of_numbers2))).to eq(any_amount_of_numbers2.sum)
+            end
+        end
     end
   end
