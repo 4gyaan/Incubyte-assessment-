@@ -34,5 +34,11 @@ RSpec.describe StringCalculator do
                 expect(subject.add(convert_csv.call(any_amount_of_numbers2))).to eq(any_amount_of_numbers2.sum)
             end
         end
+
+        context 'When new lines between numbers provided to add' do  
+            it 'should return the sum of the numbers' do
+                expect(subject.add("1\n 2, 3\n 4")).to eq(10)
+            end
+        end
     end
   end
