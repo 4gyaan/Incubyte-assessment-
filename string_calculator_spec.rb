@@ -41,10 +41,24 @@ RSpec.describe StringCalculator do
             end
         end
 
-        context 'When provide different delimeter between numbers to add' do  
+        context 'When custom delimeter proided with numbers to add' do  
             it 'should return the sum of the numbers' do
                 expect(subject.add("//;\n1;2")).to eq(3)
                 expect(subject.add("//@1@2\n3,4")).to eq(10)
+            end
+        end
+
+        context 'When provide negative number to add' do
+            context 'With single negative number' do  
+                it 'should raise an exception' do
+                    expect { subject.add("1,2,-3") }.to raise_error('negative numbers not allowed -3')
+                end
+            end
+
+            context 'With multiple negative numbers' do
+                it 'should includes all negative numbers in the error message' do
+                    expect { subject.add("1, 2,-3, 4, -5, -7") }.to raise_error('negative numbers not allowed -3,-5,-7')
+                end
             end
         end
     end
